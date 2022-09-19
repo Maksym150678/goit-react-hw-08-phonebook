@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/1.e9ef9431.chunk.js","mappings":"+JAIE,UAJe,WACb,OAAO,0CACR,C","sources":["components/Phonebook/NotFound/NotFound.jsx"],"sourcesContent":["const NotFound = () => {\n    return <h1>Page not Found</h1>;\n  };\n  \n  export default NotFound;"],"names":[],"sourceRoot":""}
