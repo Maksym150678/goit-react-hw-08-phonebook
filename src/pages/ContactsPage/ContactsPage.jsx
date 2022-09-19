@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import PhoneBookList from '../../components/Phonebook/PhonebookList/PhonebookList';
-import Form from '../../components/Phonebook/FormAddPhonebook/FormAddPhonebook';
+import PhonebookList from '../../components/Phonebook/PhonebookList/PhonebookList';
+import FormAddPhonebook from '../../components/Phonebook/FormAddPhonebook/FormAddPhonebook';
 import Filter from '../../components/Phonebook/Filter/Filter';
 import Modal from '../../components/Phonebook/Modal/Modal';
 import FormChangeContact from '../../components/Phonebook/FormChangeContact/FormChangeContact';
@@ -10,10 +10,10 @@ import {
   fetchContacts,
   deleteContacts,
   addItems,
-} from 'redux/items/itemsOperations';
-import { addFilter } from 'redux/filter/filterActions';
-import { getContactsList } from 'redux/items/itemsSelector';
-import { getFilter } from 'redux/filter/filterSelector';
+} from '../../redux/items/itemsOperations';
+import { addFilter } from '../../redux/filter/filterActions';
+import { getContactsList } from '../../redux/items/itemsSelector';
+import { getFilter } from '../../redux/filter/filterSelector';
 
 import styles from './ContactsPage.module.css';
 
@@ -34,7 +34,6 @@ const ContactsPage = () => {
     );
     return filteredContact;
   });
-  // console.log(phoneList);
 
   const onAddContact = data => {
     const action = addItems(data);
@@ -44,7 +43,6 @@ const ContactsPage = () => {
   const onDelContact = id => {
     const action = deleteContacts(id);
     dispatch(action);
-    // dispatch(fetchContacts());
   };
 
   const onChangeFilter = event => {
@@ -60,15 +58,14 @@ const ContactsPage = () => {
       contact => contact.id.toString() === event.currentTarget.id
     );
     setFindContact(searchContact);
-    // console.log(searchContact);
     toggleModal();
   };
   return (
     <div>
-      <Form onSubmit={onAddContact} />
+      <FormAddPhonebook onSubmit={onAddContact} />
       <Filter value={filter} onChange={onChangeFilter} />
       {loading && <p>...Loading</p>}
-      <PhoneBookList
+      <PhonebookList
         phoneList={phoneList}
         onDeletePhoneListItem={onDelContact}
         onClick={findIdContact}

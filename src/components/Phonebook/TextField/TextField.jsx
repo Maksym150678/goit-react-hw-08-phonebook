@@ -1,4 +1,4 @@
-import s from './TextField.module.css';
+import styles from './TextField.module.css';
 import { nanoid } from 'nanoid';
 import { useMemo } from 'react';
 
@@ -15,12 +15,12 @@ const TextField = ({
 }) => {
   const id = useMemo(() => nanoid(), []);
   return (
-    <div className={s.block}>
+    <div className={styles.block}>
       {label && (
-        <label htmlFor={id} className={s.label}>
+        <label htmlFor={id} className={styles.label}>
           {label}:
           <input
-            className={s.input}
+            className={styles.input}
             type={type}
             name={name}
             pattern={pattern}
