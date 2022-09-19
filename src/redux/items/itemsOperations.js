@@ -1,6 +1,11 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getContacts, delContacts, addContacts } from '../../shared/api/contacts';
+import {
+  getContacts,
+  delContacts,
+  addContacts,
+  changeContacts,
+} from '../../shared/api/contacts';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetch',
@@ -21,19 +26,16 @@ export const addItems = createAsyncThunk(
       const result = await addContacts(data);
       return result;
     } catch (error) {
-      return rejectWithValue(error);
+      const { data, status } = error.response;
+      return rejectWithValue({ data, status });
     }
   },
   {
     condition: (data, { getState }) => {
       const { contacts } = getState();
-      const isDublicate = contacts.items.find(
-        item => item.name === data.name || item.phone === data.phone
-      );
+      const isDublicate = contacts.items.find(item => item.name === data.name);
       if (isDublicate) {
-        alert(
-          `Name Such ${data.name} or phone ${data.phone} is already in the phone book!`
-        );
+        alert(`Name ${data.name} is already exist in the phone book!`);
         return false;
       }
     },
@@ -45,6 +47,18 @@ export const deleteContacts = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await delContacts(id);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const changeContactsItems = createAsyncThunk(
+  'contacts/change',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await changeContacts(data);
 
       return result;
     } catch (error) {

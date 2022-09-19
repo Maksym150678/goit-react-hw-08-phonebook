@@ -3,6 +3,7 @@ import {
   fetchContacts,
   addItems,
   deleteContacts,
+  changeContactsItems,
 } from './itemsOperations';
 
 const initialState = {
@@ -38,20 +39,40 @@ const contactsSlice = createSlice({
       store.items.push(payload);
       store.loading = false;
     },
-    [addItems.rejected]: (store, { payload }) => ({
-      ...store,
-      loading: false,
-      error: payload,
-    }),
+    [addItems.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
     [deleteContacts.pending]: store => {
       store.loading = false;
       store.error = null;
     },
     [deleteContacts.fulfilled]: (store, { payload }) => {
-      store.items = store.items.filter(item => item.id !== payload.id);
+      // console.log(payload);
+      store.items = store.items.filter(item => item.id !== payload);
       store.loading = false;
     },
     [deleteContacts.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [changeContactsItems.pending]: store => {
+      store.loading = false;
+      store.error = null;
+    },
+    [changeContactsItems.fulfilled]: (store, { payload }) => {
+      // store.items = store.items.map(item =>
+      //   item.id === payload.id ? payload : item
+      // );
+      store.items = store.items.reduce((prevstate, item) => {
+        if (item.id === payload.id) {
+          return [...prevstate, payload];
+        }
+        return [...prevstate, item];
+      }, []);
+      store.loading = false;
+    },
+    [changeContactsItems.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },

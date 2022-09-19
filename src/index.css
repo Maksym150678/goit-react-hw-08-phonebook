@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+@import-normalize; 
 
 body {
   margin: 0;
@@ -12,4 +12,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+ul {
+  list-style: none;
+}
+.container {
+  padding: 20px;
+  width: 1200px;
+  background: linear-gradient(to bottom, #8caee0 0%, #5b5f5b 100%);
+
+  margin-left: auto;
+  margin-right: auto;
+
+  min-height: 800px;
 }
