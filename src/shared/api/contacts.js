@@ -15,7 +15,7 @@ export const addContacts = async data => {
   return result;
 };
 
-export const changeContacts = async data => {
+export const changeContacts = async (data) => {
   await instance.patch(`/contacts/${data.id}`, {
     name: data.name,
     number: data.number,

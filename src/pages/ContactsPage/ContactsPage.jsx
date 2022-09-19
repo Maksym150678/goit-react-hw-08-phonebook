@@ -15,7 +15,7 @@ import { addFilter } from 'redux/filter/filterActions';
 import { getContactsList } from 'redux/items/itemsSelector';
 import { getFilter } from 'redux/filter/filterSelector';
 
-import s from './ContactsPage.module.css';
+import styles from './ContactsPage.module.css';
 
 const ContactsPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -75,15 +75,15 @@ const ContactsPage = () => {
       />
       {showModal && (
         <Modal onClose={toggleModal}>
-          <h2 className={s.title__change}>CHANGE CONTACT</h2>
-          <div className={s.contact}>
-            <p className={s.contact__name}>Name: {findContact.name}</p>
-            <p className={s.contact__name}>Tel: {findContact.number}</p>
+          <h2 className={styles.title__change}>CHANGE CONTACT</h2>
+          <div className={styles.contact}>
+            <p className={styles.contact__name}>Name: {findContact.name}</p>
+            <p className={styles.contact__name}>Tel: {findContact.number}</p>
           </div>
           <button
             type="button"
             onClick={toggleModal}
-            className={s.modal__close}
+            className={styles.modal__close}
           >
             close
           </button>

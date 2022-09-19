@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TextField from 'components/Phonebook/TextField/TextField';
 import { fields } from 'components/Phonebook/TextField/fields';
-import s from './LoginForm.module.css';
+import styles from './LoginForm.module.css';
 
 const LoginForm = ({ onSubmit }) => {
   const [email, setEmail] = useState('');
@@ -46,7 +46,7 @@ const LoginForm = ({ onSubmit }) => {
         onChange={hendleInputChange}
         {...fields.password}
       />
-      <button type="submit" className={s.login}>
+      <button type="submit" className={styles.login}>
         Login
       </button>
     </form>

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 function FormAddPhonebook({ onSubmit }) {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
@@ -18,8 +18,8 @@ function FormAddPhonebook({ onSubmit }) {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         return;
@@ -30,7 +30,7 @@ function FormAddPhonebook({ onSubmit }) {
     event.preventDefault();
     const data = {
       name,
-      phone,
+      number,
     };
 
     onSubmit(data);
@@ -40,7 +40,7 @@ function FormAddPhonebook({ onSubmit }) {
 
   const resetAddPhonebook = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -65,12 +65,12 @@ function FormAddPhonebook({ onSubmit }) {
         <h2 className={styles.subtitle}>Number</h2>  
         <input
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           className={styles.input}
-          value={phone}
+          value={number}
           onChange={hendleInputChange}
           id={numberInputId}
           placeholder='Enter the phone number'
