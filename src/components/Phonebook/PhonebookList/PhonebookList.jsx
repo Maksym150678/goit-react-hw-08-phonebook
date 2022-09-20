@@ -5,14 +5,14 @@ const PhonebookList = ({ phoneList, onDeletePhoneListItem, onClick }) => {
   return (
     <ul className={styles.list}>
       {phoneList.map(({ id, name, number }) => (
-        <li key={id} className={styles.phoneListItem} onClick={onClick}>
+        <li key={id} id={id} className={styles.phoneListItem} onClick={onClick}>
           <p className={styles.nameText} >{name}</p>
           <p className={styles.phoneNumber} >{number}</p>
           <button
             className={styles.buttonDelete}
             onClick={() => onDeletePhoneListItem(id)}
           >
-            Remove
+            Delete
           </button>
         </li>
       ))}

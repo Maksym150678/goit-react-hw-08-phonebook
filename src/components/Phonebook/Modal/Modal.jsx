@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
 
 const Modal = ({ onClose, children }) => {
-  const modalRoot = document.querySelector('#modal-root');
+  const modalRoot = document.querySelector('#root');
 
   useEffect(() => {
     window.addEventListener('keydown', hendleKeyDown);

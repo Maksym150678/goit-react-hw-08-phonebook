@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import PhonebookList from '../../components/Phonebook/PhonebookList/PhonebookList';
 import FormAddPhonebook from '../../components/Phonebook/FormAddPhonebook/FormAddPhonebook';
 import Filter from '../../components/Phonebook/Filter/Filter';
-import Modal from '../../components/Phonebook/Modal/Modal';
+import Modal from 'components/Phonebook/Modal/Modal';
 import FormChangeContact from '../../components/Phonebook/FormChangeContact/FormChangeContact';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -54,9 +54,12 @@ const ContactsPage = () => {
     setShowModal(!showModal);
   };
   const findIdContact = event => {
+    if (event.target.localName === 'button')
+    {return};
     const searchContact = phoneList.find(
       contact => contact.id.toString() === event.currentTarget.id
     );
+    console.log(event);
     setFindContact(searchContact);
     toggleModal();
   };
